@@ -18,12 +18,12 @@ router.post("/login", async (ctx, next) => {
     console.log("result of ctx.body.query: ", res)
 
     ctx.response.type = "json";
-    ctx.response.body = {
+    ctx.response.body = JSON.stringify({
         head: {
             code: 1,
             msg: !res.length? "登录失败":"登录成功"
         }
-    }
+    })
 })
 
 module.exports = router.routes();
