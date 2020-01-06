@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>document</title>
+    <script src="./js/jquery.min.js"></script>
+</head>
+<body>
+    <p>
+        <button onclick="handleClick('get')">get</button>
+    </p>
+    <p>
+        <input id="input_post" type="text">
+        <button onclick="handleClick('post')">post</button>
+    </p>
+    <p>
+        <button onclick="handleClick('image1')">get image 1</button>
+    </p>
+    <p>
+        <button onclick="handleClick('image2')">get image 2</button>
+    </p>
+    <div class="view-area">
+        <h2>view</h2>
+        <p id="content"></p>
+        <img id="image" style="display: none" src="" alt="" srcset="">
+    </div>
+</body>
+<script>
+function handleClick(type) {
+    let param = null;
+    const req = {
+        get: {
+            url: "/utils/get",
+            param: "test",
+            method: "GET"
+        },
+        post: {
+            url: "/utils/post",
+            param: $('#input_post')[0].value.trim(),
+            method: "POST"
+        },
+        image1: "http://localhost:1081/image1.jpg",
+        image2: "http://localhost:1081/image2.jpg",
+    }
+
+    console.log("handleClick: ", type, param);
+
+    if(type==="get"||type==="post") {
+        $.ajax({
+            url: req[type].url,
+            data: {
+                param: req[type].param,
+            },
+            type: req[type].method,
+            dataType: "json",
+            success: function(data) {
+                console.log($('#content'));
+                $('#content').html(data.ret_data);
+                $('#image').css("display","none");
+                $('#content').css("display","block");
+            }
+        });
+    }else {
+        $('#image').attr('src',req[type]);
+        $('#content').css("display","none");
+        $('#image').css("display","block");
+    }
+}
+</script>
+</html>

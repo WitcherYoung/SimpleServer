@@ -1,0 +1,19 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "homework"
+  ],
+  "author": "yemu",
+  "license": "ISC",
+  "devDependencies": {
+    "jquery": "^3.4.1",
+    "nodemon": "^2.0.2",
+    "qs": "^6.9.1"
+  }
+}
